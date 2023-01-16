@@ -70,6 +70,8 @@ $ npm run test:cov
 **1. TypeORM with Database Migrations**
 - For use it, edit in **package.json**. Find **typeorm:generate-migration** and edit end name of file. Example ***npm run typeorm -- -d ./typeOrm.config.ts migration:generate ./migrations/init***
 
+- After it, run **typeorm:generate-migration**
+
 - You will see file in folder **migrations**. Named like this **1673879532073-init.ts**
 
 - Run database migration with **npm run typeorm:run-migrations**
