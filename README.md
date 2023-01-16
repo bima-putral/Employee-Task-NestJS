@@ -58,6 +58,22 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+### Techstack
+- NestJS (**v9**)
+- TypeORM (**0.3.11**)
+- Swagger (Open API)
+- PostgreSQL
+- Supertest
+
+### Features
+
+**1. TypeORM with Database Migrations**
+- For use it, edit in **package.json**. Find **typeorm:generate-migration** and edit end name of file. Example ***npm run typeorm -- -d ./typeOrm.config.ts migration:generate ./migrations/init***
+
+- You will see file in folder **migrations**. Named like this **1673879532073-init.ts**
+
+- Run database migration with **npm run typeorm:run-migrations**
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
