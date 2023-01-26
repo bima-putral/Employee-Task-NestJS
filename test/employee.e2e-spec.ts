@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import * as request from 'supertest';
 import { EmployeeModule } from "../src/employee/employee.module";
 import { EmployeeDTO } from "../src/employee/dto/employee.dto";
+import  { faker } from "@faker-js/faker";
 
 
 describe('EmployeeController (e2e)', () => {
@@ -11,8 +12,8 @@ describe('EmployeeController (e2e)', () => {
   let app: INestApplication;
 
   const mockedEmployee: EmployeeDTO = {
-    name: 'Bima'
-  };
+    name: faker.name.fullName()
+  }
 
   beforeAll(async () => {
     const modelMixture: TestingModule = await Test.createTestingModule({
