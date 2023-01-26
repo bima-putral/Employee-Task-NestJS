@@ -2,7 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as request from 'supertest';
-import { EmployeeModule } from "../src/employee/employee.module";
+import { TaskModule } from "../src/task/task.module";
 
 
 describe('TaskController (e2e)', () => {
@@ -12,7 +12,7 @@ describe('TaskController (e2e)', () => {
   beforeAll(async () => {
     const modelMixture: TestingModule = await Test.createTestingModule({
       imports: [
-          EmployeeModule,
+          TaskModule,
         TypeOrmModule.forRoot({
           type: 'postgres',
           host: '127.0.0.1',
@@ -36,7 +36,7 @@ describe('TaskController (e2e)', () => {
   });
 
 
-  it('Get task list', async () => {
+  it('/task (GET) task list', async () => {
     const result = await request(app.getHttpServer())
         .get('/task');
     expect(result.status).toBe(200);

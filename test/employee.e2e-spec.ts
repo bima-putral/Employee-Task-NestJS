@@ -3,11 +3,16 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as request from 'supertest';
 import { EmployeeModule } from "../src/employee/employee.module";
+import { EmployeeDTO } from "../src/employee/dto/employee.dto";
 
 
 describe('EmployeeController (e2e)', () => {
 
   let app: INestApplication;
+
+  const mockedEmployee: EmployeeDTO = {
+    name: 'Bima'
+  };
 
   beforeAll(async () => {
     const modelMixture: TestingModule = await Test.createTestingModule({
@@ -36,10 +41,17 @@ describe('EmployeeController (e2e)', () => {
   });
 
 
-  it('Get employee list', async () => {
+  it('/employee (GET) employee list', async () => {
     const result = await request(app.getHttpServer())
         .get('/employee');
     expect(result.status).toBe(200);
   })
+
+  it('/employee (POST) Should create a new employee', async () => {
+    return request(app.getHttpServer())
+      .post('/employee')
+      .send(mockedEmployee)
+      .expect(201);
+  });
 
 })
