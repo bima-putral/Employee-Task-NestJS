@@ -1,5 +1,5 @@
 import { EmployeeService } from "./employee.service";
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { EmployeeDTO } from "./dto/employee.dto";
 import { ApiBody, ApiTags } from "@nestjs/swagger";
 
@@ -21,6 +21,17 @@ export class EmployeeController {
   @Post()
   async createEmployee(@Body() dto: EmployeeDTO) {
     return await this.servEmployee.createEmployee(dto)
+  }
+
+  @ApiBody({ type: EmployeeDTO })
+  @Put(":id")
+  async updateEmployee(@Param("id") id: string, @Body() dto: EmployeeDTO) {
+    return await this.servEmployee.updateEmployee(id, dto)
+  }
+
+  @Delete(":id")
+  async deleteEmployee(@Param("id") id: string) {
+    return await this.servEmployee.deleteEmployee(id)
   }
 
 }

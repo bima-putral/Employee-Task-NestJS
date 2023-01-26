@@ -5,6 +5,7 @@ import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { PostgresConfigService } from "./common/database/postgres.connector";
 import { EmployeeModule } from "./employee/employee.module";
+import { TaskModule } from "./task/task.module";
 
 const envFilePath = `.env`;
 
@@ -12,7 +13,8 @@ const envFilePath = `.env`;
   imports: [
     ConfigModule.forRoot({ envFilePath, isGlobal: true }),
     TypeOrmModule.forRootAsync({ useClass: PostgresConfigService }),
-    EmployeeModule
+    EmployeeModule,
+    TaskModule
   ],
   controllers: [AppController],
   providers: [AppService],
